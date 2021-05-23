@@ -27,6 +27,7 @@ func (s *Storage) Open() error {
 	return nil
 }
 
+
 func (s *Storage) Close() {
 	s.db.Close()
 }
