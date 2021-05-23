@@ -2,6 +2,9 @@ package storage
 
 import (
 	"database/sql"
+	"log"
+
+	_ "github.com/lib/pq"
 )
 
 type Storage struct {
@@ -24,10 +27,9 @@ func (s *Storage) Open() error {
 		return err
 	}
 	s.db = db
+	log.Println("DB connection created successefully")
 	return nil
 }
-
-
 
 func (s *Storage) Close() {
 	s.db.Close()
