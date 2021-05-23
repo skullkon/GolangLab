@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/sirupsen/logrus"
+	"github.com/skullkon/go_lab/storage"
 )
 
 func (a *API) configLogger() error {
@@ -21,6 +22,11 @@ func (a *API) configRouter() {
 	})
 }
 
-func (a *API) configureStorage() error {
+func (a *API) configStorage() error {
 	storage := storage.New(a.config.Storage)
+	if err := storage.Open(); err != nil {
+		return err
+	}
+	a.storage = storage
+	return nil
 }

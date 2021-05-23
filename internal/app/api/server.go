@@ -29,5 +29,8 @@ func (a *API) Start() error {
 	}
 	a.logger.Info("Starting server at port:", a.config.Port)
 	a.configRouter()
+	a.logger.Info("Router has configured successefuly")
+	a.configStorage()
+	a.logger.Info("Storage has configured successefuly")
 	return http.ListenAndServe(a.config.Port, a.router)
 }
