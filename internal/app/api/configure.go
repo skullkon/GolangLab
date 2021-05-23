@@ -20,3 +20,7 @@ func (a *API) configRouter() {
 		w.Write([]byte("Hello!"))
 	})
 }
+
+func (a *API) configureStorage() error {
+	storage := storage.New(a.config.Storage)
+}

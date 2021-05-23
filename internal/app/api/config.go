@@ -1,10 +1,14 @@
 package api
 
-import "github.com/skullkon/go_lab/helpers"
+import (
+	"github.com/skullkon/go_lab/helpers"
+	"github.com/skullkon/go_lab/storage"
+)
 
 type Config struct {
 	Port        string
 	LoggerLevel string
+	Storage     *storage.Config
 }
 
 var (
@@ -17,5 +21,6 @@ func NewConfig() *Config {
 	return &Config{
 		Port:        port,
 		LoggerLevel: loggerLevel,
+		Storage:     storage.NewConfig(),
 	}
 }
