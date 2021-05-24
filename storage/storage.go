@@ -8,8 +8,10 @@ import (
 )
 
 type Storage struct {
-	config *Config
-	db     *sql.DB
+	config     *Config
+	db         *sql.DB
+	userRep    *UserRep
+	articleRep *ArticleRep
 }
 
 func New(config *Config) *Storage {
@@ -33,4 +35,25 @@ func (s *Storage) Open() error {
 
 func (s *Storage) Close() {
 	s.db.Close()
+}
+
+func (s *Storage) User() *UserRep {
+	if s.userRep != nil {
+		return s.userRep
+	}
+	s.userRep = &UserRep{
+		storage: s,
+	}
+	return nil
+}
+
+func (s *Storage) Article() *ArticleRep {
+	if s.articleRep != nil {
+		return s.articleRep
+	}
+	s.articleRep = &ArticleRep{
+		storage: s,
+	}
+
+	return nil
 }
